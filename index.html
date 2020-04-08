@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>Cross-Browser QRCode generator for Javascript</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+</head>
+<body>
+<h1 style="margin-top:10px; text-align:center">QR Code Generator</h1>
+<div id="qrcode" style="width:250px; height:250px; margin-top:15px; margin-left: auto;margin-right: auto"></div>
+
+<span style="font-size:20px; margin-left:20px">SSID:</span>
+<input id="ssid" type="text" value="ssid" style="font-size:20px; width:210px; margin-top:10px; margin-left: 42px" />
+
+<span style="font-size:20px; margin-left:20px; margin-top:10px">Passcode:</span>
+<input id="passcode" type="text" value="pass" style="font-size:20px; width:210px; margin-top:10px" />    
+
+<p style="font-size:20px; margin-left:20px; margin-top:10px">Others:</p>
+<textarea id="others" rows="4" cols="35" style="font-size:18px;margin-left:20px; margin-top:-20px">
+</textarea>
+
+<div style="text-align: center">
+<button style="font-size:20px;margin-top: 10px" onclick="genQR()">Generate QR Code</button> 
+</div>
+
+<script type="text/javascript">
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 250,
+	height : 250
+});
+
+function genQR(){
+  var textForQR = "SSID:"+$("#ssid").val()+" "
+                 +"PWD:"+$("#passcode").val()+" "
+                 +$("#others").val();
+  
+  console.log(textForQR);
+  qrcode.makeCode(textForQR);
+}  
+</script>
+</body>
